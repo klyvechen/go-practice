@@ -1,0 +1,6 @@
+bin
+gohello
+observer.a
+pkg/darwin_amd64/github.com/gin-contrib
+pkg
+.history/**
