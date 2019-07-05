@@ -16,22 +16,25 @@ type SideBar struct {
 }
 
 func GetSideBars(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	result := []SideBar{
+		{"active", "index", "Icon_house_alt", "Example", []SideBar{}},
 		{"sub-menu", "javascript:;", "icon_document_alt", "採購", []SideBar{
 			{"", "form_component.html", "", "採購單預購", []SideBar{}},
 			{"", "form_validation.html", "", "採購單分析", []SideBar{}},
 		}},
-		{"active", "/index.html", "Icon_house_alt", "Dashboard", []SideBar{}},
-		{"sub-menu", "javascript:;", "Icon_document_alt", "Forms", []SideBar{
-			{"", "form_component.html", "", "Form Elements", []SideBar{}},
-			{"", "form_validation.html", "", "Form Validation", []SideBar{}},
+		{"sub-menu", "javascript:;", "Icon_document_alt", "廠商管理", []SideBar{
+			{"active", "supplier", "", "供應商管理", []SideBar{}},
+			{"active", "store", "", "店家管理", []SideBar{}},
 		}},
-		{"sub-menu", "javascript:;", "Icon_desktop", "UI Fitures", []SideBar{
-			{"", "general.html", "", "Elements", []SideBar{}},
-			{"", "buttons.html", "", "Buttons", []SideBar{}},
-			{"", "grids.html", "", "Grids", []SideBar{}},
+		{"active", "supplier", "", "供應商管理", []SideBar{}},
+		{"sub-menu", "javascript:;", "Icon_desktop", "商品", []SideBar{
+			{"active", "inventory", "", "分類一", []SideBar{}},
+			{"", "productManagement", "", "分類二", []SideBar{}},
+			{"", "grids.html", "", "分類三", []SideBar{}},
 		}},
-		{"active", "widgets.html", "Icon_genius", "Widgets", []SideBar{}},
+		{"active", "widgets.html", "Icon_genius", "庫存管理", []SideBar{}},
+		{"active", "topology", "Icon_genius", "Topology", []SideBar{}},
 		{"active", "chart-chartjs.html", "Icon_piechart", "Charts", []SideBar{}},
 		{"active", "basic_table.html", "Icon_table", "Basic Table", []SideBar{}},
 		// {"sub-menu", "javascript:;", "icon_document_alt", "採購", nil},
@@ -56,4 +59,12 @@ func GetSideBars(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Fprintln(w, string(jsonresult))
 	//
+}
+
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+}
+
+func Test() {
+
 }
